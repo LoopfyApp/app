@@ -1,0 +1,74 @@
+<ion-content [scrollY]="true">
+  <ion-list>
+    <ion-item lines="full">
+      <ion-icon color='primary' (click)="dismissModal()" name="chevron-down-outline" slot="start"></ion-icon>
+    </ion-item>
+  
+    <ion-item *ngFor="let comentario of comentarios" lines="none"        
+    class="comment">
+      <ion-avatar slot="start">
+        <img class="avatarProfile" [src]="comentario.pets.photo" />
+      </ion-avatar>
+      <ion-label color="tertiary" class="ion-no-padding itemComment">
+        <div class="tertiary">
+          {{ comentario.pets.name }}<br />
+          <span class="black">
+            {{ comentario.comments }}
+          </span>
+          <br />
+          <span class="black left"> {{ formatDate(comentario.created_at) }}</span>
+        </div>
+      </ion-label>
+      <ion-icon *ngIf="user.id === comentario.users_id || user.id === post_user_id" (click)="presentActionSheet(id, comentario.id, comentario.users_id, user.id, user.name)" color="secondary" size="small" slot="end" name="ellipsis-vertical-outline"></ion-icon>   
+    </ion-item>
+  
+  </ion-list>
+  
+</ion-content>
+<ion-footer color="tertiary">
+  <ion-row>
+    <ion-col size="12">
+      <ion-item mode="ios" class="ion-no-padding ion-no-margen" (click)="selectmascote()" *ngIf="!selectMascte">
+        <ion-label  class="ion-padding"> 
+          Selecione Mascote
+        </ion-label>
+   
+            <ion-icon  color="secondary"   slot="end"name="add-circle" ></ion-icon>
+      
+      </ion-item>
+  
+      <ion-item mode="ios" class="ion-no-padding ion-no-margen" *ngIf="selectMascte"  (click)="selectmascote()">
+        <ion-avatar slot="start" > 
+          <img [src]="datamascote.photo" />
+        </ion-avatar>
+        <ion-label
+          >{{datamascote.name}}
+          <br />
+          <small>{{datamascote.description}}</small>
+        </ion-label> 
+       
+      
+            <ion-icon
+            mode="ios" color="secondary" slot="end"
+              name="close-circle-outline"
+            ></ion-icon> 
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row class="input-position ion-no-padding fondo"  color="tertiary">
+    <ion-col size="2">
+      <ion-icon mode="ios" (click)="keyboards()" *ngIf="!showEmojiPicker"  name="happy" ></ion-icon>
+      <ion-icon name="text-outline"  (click)="emojis()"  *ngIf="showEmojiPicker"></ion-icon>
+    </ion-col>
+    <ion-col size="8">
+      <ion-textarea type="text" mode="ios" autoGrow="true" placeholder="Seu comentário" [(ngModel)]="newmessage" padding-start> </ion-textarea>
+    </ion-col>
+    <ion-col size="2" text-right>
+        <ion-icon mode="ios" (click)="addComment()" name="send"  ></ion-icon>
+   </ion-col>
+  </ion-row>
+
+  <div class="emojiContainer" [style.height]="showEmojiPicker?'300px':'0px'">  
+    <emoji-picker (onEmojiSelect)="addEmoji($event)"></emoji-picker>
+  </div>
+</ion-footer>

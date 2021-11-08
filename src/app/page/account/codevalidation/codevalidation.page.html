@@ -1,0 +1,32 @@
+<ion-content class="ion-padding" color="primary">
+
+  <div class="formulario">
+  <h3>Digite o código de validação, enviado para o seu e-mail</h3>
+  <ion-row class="ion-no-padding ion-no-margin">
+    <ion-col size="12" class="ion-no-padding ion-no-margin">
+      <code-input
+      [isCodeHidden]="false"
+      [isCharsCode]="true"
+      [codeLength]="lengthOTP"
+      (codeChanged)="onCodeChanged($event)"
+      (codeCompleted)="onCodeCompleted($event)"
+    >
+    </code-input>
+    </ion-col>
+ 
+
+  </ion-row>
+  <p class="p-middle-bottom ion-margin-top ion-text-center">O código não chegou? <a class="danger" (click)="resendCode()">Reenviar</a
+    ></p>
+  
+    <ion-button  class="button_rojo" fill="clear"  [disabled]="!validOTP" (click)="validateForm()">
+       Verificar Código 
+      </ion-button>
+ 
+ 
+    <ion-button class="button_blanco" fill="clear" (click)="cancelar()">
+      Cancelar registro 
+    </ion-button>
+ 
+  </div>
+</ion-content>

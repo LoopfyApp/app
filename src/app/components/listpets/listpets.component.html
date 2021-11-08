@@ -1,0 +1,22 @@
+<ion-searchbar placeholder="Pesquisa seu Pet"  [(ngModel)]="search" ></ion-searchbar>    
+<ion-card *ngFor="let datamascote of mascote | filter:search ">
+  <ion-item mode="ios" class="ion-no-padding ion-no-margen"  (click)="getSelectMascote(datamascote)">
+    <ion-avatar slot="start" > 
+      <img [src]="datamascote.photo" />
+    </ion-avatar>
+    <ion-label
+      >{{datamascote.name}}
+      <br />
+      <small>{{datamascote.description}}</small>
+    </ion-label>
+    <ion-buttons slot="end">
+   
+      <ion-button mode="ios" color="secondary" >
+        <ion-icon
+          slot="icon-only"
+          name="add"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+</ion-card>

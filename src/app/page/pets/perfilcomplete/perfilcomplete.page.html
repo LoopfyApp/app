@@ -1,0 +1,190 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title color="secondary"> {{title}} </ion-title>
+      <ion-buttons slot="end" mode="ios"  >
+        <ion-button color="secondary" mode="ios" (click)="closeModal()" >
+          <ion-icon slot="icon-only" mode="ios" name="close-circle"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="primary">
+  <app-loadings *ngIf="!isLoadding"></app-loadings>
+  <div *ngIf="isLoadding">
+    <div *ngIf="!edit">
+    <ion-card  class="ion-no-padding ion-no-margen">
+      <ion-item mode="ios" class="ion-no-padding ion-no-margen"  >
+        <ion-avatar slot="start" > 
+          <img [src]="user.photo" />
+        </ion-avatar>
+        <ion-label
+          >Dono do Pet<br>{{user.name}} 
+        </ion-label>
+      
+      </ion-item>
+    </ion-card>
+
+    <ion-card  class="ion-no-padding ion-no-margen">
+      <ion-item mode="ios" class="ion-no-padding ion-no-margen"  >
+        <ion-avatar slot="start" > 
+          <img [src]="Infopets.photo" />
+        </ion-avatar>
+        <ion-label
+          >{{Infopets.name}}
+          <br />
+          <small>{{Infopets.description}}</small>
+        </ion-label>
+      
+      </ion-item>
+    </ion-card>
+
+    <ion-card mode="ios" class="ion-no-padding ion-no-margen" >
+      <ion-row>
+        <ion-col size="6"><b>Idade:</b> {{CalculateAge()}} </ion-col>
+        <ion-col size="6"><b>Data:</b> {{Infopets.birthday | date:'dd-MM-YYYY'}} </ion-col> 
+        <ion-col size="12"><b>Porte:</b> {{portepets(Infopets.size)}} </ion-col> 
+        <ion-col size="12"><b>Espécie:</b> {{Infopets.species.name}} </ion-col> 
+        <ion-col size="12"><b>Raça:</b> {{Infopets.breed.name}} </ion-col> 
+        <ion-col size="12"><b>Gênero:</b> {{generopets(Infopets.genero)}} </ion-col> 
+        <ion-col size="12"><b>Identificação:</b> {{sinpets(Infopets.identification)}} </ion-col> 
+        <ion-col size="12"><b>Castrado:</b> {{sinpets(Infopets.castrated)}} </ion-col> 
+        <ion-col size="12"><b>Vacinas:</b>   
+          <span *ngFor="let vectorData of vector">
+            {{Vaccinespets(vectorData)}}, </span>
+          
+        </ion-col> 
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button *ngIf="Infopets.users_id === idUser" class="button_rojo" (click)="edit=true;title='Editar Dados Pets'">
+            Editar
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+
+          <ion-button *ngIf="Infopets.users_id === idUser" class="button_rojo" (click)="delete(Infopets.id)">
+            Apagar
+          </ion-button>
+
+        </ion-col>
+      </ion-row>
+     
+  
+
+    
+    </ion-card>
+  </div>
+
+  <div *ngIf="edit">
+
+
+    <form [formGroup]="PetsForm" (ngSubmit)="saveInfo(PetsForm.value)">
+      <ion-card class="ion-no-padding">
+        <ion-item class="ioncamera ion-padding" lines="none">
+          <img class="camera-button" [src]="photo" (click)="goToCamera()" />
+        </ion-item>
+  
+        <ion-card-content mode="ios" class="ion-no-padding">
+          <ion-item lines="full" class="no-padding" mode="ios">
+            <ion-label position="stacked">Nome</ion-label>
+            <ion-input type="text" formControlName="name" mode="ios"></ion-input>
+          </ion-item>
+
+          
+          <ion-item lines="full" class="no-padding" mode="ios">
+            <ion-label position="stacked">Data de Nascimento</ion-label>
+            <ion-datetime displayFormat="DD-MM-YYYY" formControlName="birthday" mode="ios"  okText="ok" cancelText="Cancelar"></ion-datetime>
+           
+          </ion-item>
+
+          <ion-item lines="full" class="no-padding" mode="ios">
+            <ion-label position="stacked">Porte</ion-label>
+            <ion-select formControlName="size"  [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione Porte" mode="ios"  okText="ok" cancelText="Cancelar">
+              <ion-select-option value="1">Toy - até 5kg,</ion-select-option>
+              <ion-select-option  value="2">Pequeno 6 - 10kg</ion-select-option>
+              <ion-select-option  value="3">Médio 11 - 20kg</ion-select-option>
+              <ion-select-option  value="4">Grande 21 - 40kg</ion-select-option> 
+              <ion-select-option  value="5">Gigante + 40kg</ion-select-option> 
+            </ion-select>
+          </ion-item>
+
+         
+
+          
+          <ion-item button (click)="presentPopover()" lines="full" mode="ios">
+            <ion-label position="stacked">Especie </ion-label>
+            <ion-input type="text" formControlName="species" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item lines="full" (click)="presentPopover()" mode="ios">
+            <ion-label position="stacked">Raça</ion-label>
+            <ion-input
+              type="text"
+              formControlName="raza"
+              class="form-controll"
+              readonly
+            ></ion-input>
+          </ion-item>
+  
+
+          <ion-item lines="full" class="no-padding" mode="ios">
+            <ion-label position="stacked">Gênero</ion-label>
+            <ion-select formControlName="genero"  [interfaceOptions]="customActionSheetOptionsGenero" interface="action-sheet" placeholder="Seleccione Gênero" mode="ios"  okText="ok" cancelText="Cancelar">
+              <ion-select-option value="1">Fêmea</ion-select-option>
+              <ion-select-option  value="2">Macho</ion-select-option> 
+            </ion-select>
+          </ion-item>
+
+          <ion-item lines="full" class="no-padding" mode="ios">
+            <ion-label position="stacked">Microchip de Identificação</ion-label>
+            <ion-select formControlName="identification"  [interfaceOptions]="customActionSheetOptionsIdentification" interface="action-sheet" placeholder="Identificação" mode="ios"  okText="ok" cancelText="Cancelar">
+              <ion-select-option value="1">Sim</ion-select-option>
+              <ion-select-option  value="2">Não</ion-select-option> 
+            </ion-select>
+          </ion-item>
+
+          
+
+          <ion-item lines="full" class="no-padding" mode="ios">
+            <ion-label position="stacked">Castrado</ion-label>
+            <ion-select formControlName="castrated"  [interfaceOptions]="customActionSheetOptionsCastrado" interface="action-sheet" placeholder="Castrado" mode="ios"  okText="ok" cancelText="Cancelar">
+              <ion-select-option value="1">Sim</ion-select-option>
+              <ion-select-option  value="2">Não</ion-select-option> 
+            </ion-select>
+          </ion-item>
+
+
+          <ion-item lines="full" class="no-padding" mode="ios">
+            <ion-label position="stacked">Vacinas</ion-label>
+            <ion-select multiple formControlName="vaccines"  [interfaceOptions]="customActionSheetOptionsVaccines" interface="action-sheet"  placeholder="Seleccione vaccines" mode="ios"  okText="ok" cancelText="Cancelar">
+              <ion-select-option value="1">Antirabica</ion-select-option>
+              <ion-select-option  value="2">V8</ion-select-option>
+              <ion-select-option  value="3">V10</ion-select-option>
+              <ion-select-option  value="4">Contra a giardíase</ion-select-option>
+              <ion-select-option  value="5">Contra a gripe canina</ion-select-option> 
+            </ion-select>
+          </ion-item>
+
+
+          <ion-item lines="none" mode="ios">
+            <ion-label position="stacked">Quem sou eu: </ion-label>
+            <ion-input type="text" formControlName="description"></ion-input>
+          </ion-item>
+          <ion-button
+            class="button_rojo"
+            mode="ios"
+            type="submit"
+            [disabled]="!PetsForm.valid"
+            >Adicionar</ion-button
+          >
+          <ion-button class="button_blanco"  (click)="edit=false;title='Dados Pets'" mode="ios" 
+            >Cancelar</ion-button
+          >
+        </ion-card-content>
+      </ion-card>
+    </form>
+
+  </div>
+
+  </div>
+</ion-content>

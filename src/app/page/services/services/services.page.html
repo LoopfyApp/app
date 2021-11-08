@@ -1,0 +1,51 @@
+
+<app-header></app-header>
+<ion-content color="primary">
+  
+<app-loadings *ngIf="!isLoadding"></app-loadings>
+<div *ngIf="isLoadding"><br>
+    <ion-slides
+    pager="false"
+    [options]="EspeciesOption"
+    #slidebanners
+    autoplay="3000"
+    class="slides-banners"
+  
+    (ionSlidesDidLoad)="slidesDidLoad(slidebanners)"
+  >
+    <ion-slide
+      *ngFor="let datosEspecie of especies"
+      (click)="servicesClick(datosEspecie)"
+    >
+    <ion-button class="button_circle"    [color]="datosEspecie.id === idEspecies ? 'secondary' : 'light'">
+      <img [src]="datosEspecie.logo" width="100%" [ngClass]="datosEspecie.id === idEspecies ? 'path' : ''"  />
+    </ion-button>
+    </ion-slide>
+  </ion-slides>
+
+<div *ngIf="idEspecies == '' ">
+    <h4  class="ion-text-center option-center">Selecione um tipo de espécie</h4>
+</div> 
+
+<div class="ion-padding ion-margin ion-text-center" *ngIf="CargarData">
+  <app-spinner></app-spinner>	
+</div>
+
+<div *ngIf="!CargarData && isLoadding">
+    <h4 class="ion-text-center">{{title}}</h4>
+    <ion-row class="ion-no-padding ion-no-margin ion-text-center">
+        <ion-col *ngFor="let datoscategorys of categorys" size="6" class="ion-no-padding ion-no-margin ion-text-center">
+            <ion-card mode="ios" class="ion-no-padding ion-margin ion-text-center" (click)="clickCategory(datoscategorys.id)">
+                <img [src]="datoscategorys.logo" style="height: 80px;">
+                <h5 class="ion-text-center">{{datoscategorys.name}}</h5>
+            </ion-card>            
+        </ion-col>
+    </ion-row>
+
+
+</div>
+
+</div>
+
+
+</ion-content>

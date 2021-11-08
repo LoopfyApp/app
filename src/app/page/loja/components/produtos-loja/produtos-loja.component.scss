@@ -1,0 +1,48 @@
+ion-avatar{
+    width: 60px;
+    height: 60px;
+}
+.foto{
+    width: 100%;
+}
+.title{
+    font-size: 3.5vw;
+    color: black;
+}
+.subtitle{
+    font-size: 2.5vw;
+}
+.precio{
+    text-align: right;
+    padding: 5px;
+    font-size: 6vw;
+    color: var(--ion-color-secondry);
+}
+.precio2{
+    text-align: right;
+    padding: 5px;
+    color: var(--ion-color-secondry);
+}
+ion-card{
+    margin-top: 0px;
+    
+}
+ion-card-content{
+    padding-top: 10px;
+}
+.iconheart{
+    --background: none;
+    background: none; 
+    position: absolute;
+    bottom: -20px;
+    right: 0px;
+    ion-icon{
+        font-size: 14px;
+    }
+}
+ion-chip {
+    width: 100%;
+    font-size: small;
+ 
+
+}

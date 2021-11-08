@@ -1,0 +1,39 @@
+ion-title{
+    width: 100%;
+    --padding: 0px;
+    padding: 0px;
+}
+ion-img{
+    width: 100%
+}
+ion-textarea{
+ --color:white;
+ color:white;
+ --placeholder-color:white;
+}
+ion-col{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+ion-row .fondo, ion-footer{
+    background-color: var(--ion-color-secondary);
+}
+ion-icon{
+    --color: white;
+    color: white;
+    font-size: 35px;
+}
+
+ion-avatar{
+    width: 100px;
+    height: 100px;
+}
+.menor img{
+    width: 50px;
+    height: 50px;
+}
+ion-searchbar{
+    --background: white;
+}

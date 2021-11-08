@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login" mode="ios" text="" color="secondary"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="secondary">Preencha os Dados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-no-padding" color="primary">
+	<form  [formGroup]="RegisterForm"  (ngSubmit)="ValueInfo(RegisterForm.value)">
+
+  <ion-card class="ion-no-padding">
+
+    <ion-item class="ioncamera ion-padding" lines="none" >		
+      <img class="camera-button" [src]="imageDefault" (click)="goToCamera()">
+    </ion-item>
+
+    <ion-card-content mode="ios">
+      <ion-item lines="full" class="no-padding"  mode="ios">
+        <ion-label position="stacked"  mode="ios">NOME DO TUTOR: </ion-label>
+        <ion-input type="text" formControlName="nome"  mode="ios"></ion-input>
+      </ion-item>
+      <ion-item lines="full"  mode="ios">
+        <ion-label position="stacked"  mode="ios">E-MAIL: </ion-label>
+        <ion-input type="email" formControlName="email"  mode="ios"></ion-input>
+      </ion-item>
+      <ion-item lines="full"  mode="ios">
+        <ion-label position="stacked"  mode="ios">PASSWORD: </ion-label>
+        <ion-input mode="ios" formControlName="password" [type]="typeOption" required></ion-input>
+        <ion-icon *ngIf="viewPassword" (click)="passwordview(false)" mode="ios" name="eye" color="secondary" slot="end"></ion-icon>
+        <ion-icon *ngIf="!viewPassword" (click)="passwordview(true)" name="eye-off" mode="ios" color="secondary" slot="end"></ion-icon>
+       </ion-item>
+      <ion-item lines="none"  mode="ios">
+        <ion-label position="stacked"  mode="ios">CONFIRMAR PASSWORD: </ion-label>
+        <ion-input [type]="typeOption" mode="ios" formControlName="confirmPassword" name="confirmPassword"></ion-input>
+        <ion-icon *ngIf="viewPassword" (click)="passwordview(false)" mode="ios" name="eye" color="secondary" slot="end"></ion-icon>
+        <ion-icon *ngIf="!viewPassword" (click)="passwordview(true)" name="eye-off" mode="ios" color="secondary" slot="end"></ion-icon>
+  
+      </ion-item>
+
+      <ion-item lines="none"  mode="ios">
+        <ion-checkbox  mode="ios" formControlName="politicas" slot="start"></ion-checkbox>
+        <ion-label  mode="ios" class="ion-text-wrap black">Ao criar a conta, você concorda com nossos <a class="red" href="https://loopfy.app/termos-e-condicoes/" target="_blank">Termos e condições de uso</a> e nossa <a  class="red" target="_blank" href="https://loopfy.app/politica-de-privacidade/">Política de Privacidade</a></ion-label>   
+      </ion-item>
+      
+
+      <ion-button class="button_rojo" mode="ios"  type="submit" [disabled]="!RegisterForm.valid" (click)="aleertConfirm()" >Continuar</ion-button>
+    </ion-card-content>
+  </ion-card> 
+</form>
+</ion-content>

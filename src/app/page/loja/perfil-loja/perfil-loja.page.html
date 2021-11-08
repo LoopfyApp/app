@@ -1,0 +1,70 @@
+<app-header></app-header>
+<ion-content
+  color="primary"
+  [scrollEvents]="true"
+  (ionScroll)="onScroll($event)"
+>
+  <app-loadings *ngIf="!isLoadding"></app-loadings>
+  <div *ngIf="isLoadding">
+    <ion-card class="ion-no-padding ion-no-margin">
+      <div class="overlay"></div>
+      <div class="divcover" style="background-image: url({{info.store.photo_background}});">
+        <ion-row class="profile">
+          <ion-col size="4" class="center">
+            <img [src]="info.store.photo" class="avatar" />
+          </ion-col>
+          <ion-col size="8">
+            <ion-label color="tertiary">{{info.store.razon}}</ion-label>
+            <ion-button
+              fill="clear"
+              class="button_transparente"
+              mode="ios"
+              (click)="dataProfileLoja(info.store)">
+              + INFORMAÇÃO
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="row-bottom">
+          <ion-col size="6">
+            <ion-button class="button_rojo" mode="ios"> Seguir </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button class="button_verdeagua" mode="ios">
+              Enviar mensagem
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-card>
+
+    <ion-toolbar mode="ios" [ngClass]="{'filter-sticky': flagFilterSticky}">
+      <ion-segment
+        mode="ios"
+        (ionChange)="LojasValue($event)"
+        [(ngModel)]="LojaOption"
+      >
+      <ion-segment-button [ngClass]="{'ativo': LojaOption==1}" value="1" mode="ios">
+        Produtos
+      </ion-segment-button>
+        <ion-segment-button value="2" mode="ios" [ngClass]="{'ativo': LojaOption==2}">
+        Serviços
+        </ion-segment-button>
+        <ion-segment-button value="3" mode="ios" [ngClass]="{'ativo': LojaOption==3}">
+        Consultas
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+    <div class="ion-padding-top" *ngIf="LojaOption==1" style="min-height: 100px;">
+      <app-produtos-loja [store]="info.store" [products]="info.products" [especies]="info.species" (EmiteDetails)="openModal($event)"></app-produtos-loja>
+    </div>
+    <div class="ion-padding-top" *ngIf="LojaOption==2" style="min-height: 100px;">
+      <app-servicos-loja></app-servicos-loja>
+    </div>
+    <div class="ion-padding-top" *ngIf="LojaOption==3" style="min-height: 100px;">
+      <app-veterinary-loja (EmiteDetails)="openModal($event)"></app-veterinary-loja>
+    </div>
+  </div>
+
+</ion-content>

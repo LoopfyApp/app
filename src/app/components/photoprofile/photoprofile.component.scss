@@ -1,0 +1,157 @@
+ion-content{
+
+	.header{
+		display: flex;
+		height: 10%;
+		width: 100%;
+		justify-content: space-between;
+		// background-color: red;
+
+		.back{
+			display: flex;
+			height: 100%;
+			width: 17%;
+			// background-color: pink;
+
+			.back-button{
+	            display: flex;
+	            justify-content: center;
+	            align-items: center;
+	            height: 100%;
+	            width: 100%;
+	            // background-color: red;
+	            font-size: 6.944vw;
+	            color: #F6484F;
+	        }
+		}
+
+		.exit{
+			height: 100%;
+			width: 29%;
+			// background-color: pink;
+
+			.exit-button{
+	            display: flex;
+	            justify-content: center;
+	            align-items: center;
+	            height: 100%;
+	            width: 100%;
+	            // background-color: red;
+	            font-size: 11.111vw;/*40px*/
+	        }
+		}
+	}
+
+	.sub-header{
+		display: flex;
+		align-items: center;
+		justify-content: center; 
+		width: 100%; 
+	}
+
+	.foto-div{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 27%;
+		width: 100%;
+		// background-color: pink;
+
+		.img-box{
+		  background-image: url(/assets/button/botonbasefoto.svg);
+		  background-size: contain;
+		  background-repeat: no-repeat;
+		  padding: 6px;/*3px*//*para borda mais grossa, aumentar*/
+		}
+
+		.profilepic {
+		  width: 130px;
+		  max-width: none;
+		  height: 130px;
+		  max-height: none;
+		  border-radius: 50%;
+		  // border-radius: 100%;
+		  object-fit: cover;
+		  overflow: hidden;
+		  // margin-bottom: 2px; /*vem pra baixo diminui*/
+		  //margin-top: 5px;
+		  //margin-left: -1px; /*vem pra esquerda diminui*/
+		}
+	}
+
+	.input-div{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 20vh;/*20%*/
+		width: 100%;
+		// background-color: green;
+
+		.big-input{
+			width: 80%;
+			height: 80%;
+			border-radius: 8px;/*10px*/
+			border-color: #A6BAC1;
+			border-style: solid;
+			border-width: 1px;
+			// background-color: #51dfff;
+		}
+	}
+
+	.botoes{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 20vh;/*20%*/
+		width: 100%;
+		// background-color: pink;
+	}
+
+	.botao-post{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 8vh;/*8%*/
+		width: 100%;
+		// background-color: gray;
+	}
+
+	$size-button: 3.056vw;
+
+	.botao-half{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 44%;
+		// background-color: red;
+	}
+
+	.botao-meio{
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  width: 100%;
+	  // background-color: pink;
+	}
+
+	ion-button{
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    background-image: url(/assets/button/botoncam-albun.svg);
+	    background-size: contain;
+	    background-repeat: no-repeat;
+	    background-position: center;
+	    height: calc(#{$size-button} * 3.7);
+	}
+
+	#postar{
+		background-image: url(/assets/button/bigredbutton.svg);
+	}
+
+	#label-entrar{
+	  color: #ffffff;
+	  font-size: $size-button;
+	  width: 40.556vw; /*tamanho fixado*/
+	}
+}

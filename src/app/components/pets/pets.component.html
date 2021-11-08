@@ -1,0 +1,56 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title color="secondary"> Adicionar Pets </ion-title>
+ 
+      <ion-buttons slot="end" mode="ios" *ngIf="modaloptions">
+        <ion-button color="secondary" mode="ios" (click)="emit()">
+          <ion-icon slot="icon-only" mode="ios" name="close-circle"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="primary">
+  <form [formGroup]="PetsForm" (ngSubmit)="saveInfo(PetsForm.value)">
+    <ion-card class="ion-no-padding">
+      <ion-item class="ioncamera ion-padding" lines="none">
+        <img class="camera-button" [src]="photo" (click)="goToCamera()" />
+      </ion-item>
+
+      <ion-card-content mode="ios">
+        <ion-item lines="full" class="no-padding" mode="ios">
+          <ion-label position="stacked">Nome</ion-label>
+          <ion-input type="text" formControlName="name" mode="ios"></ion-input>
+        </ion-item>
+        <ion-item button (click)="presentPopover()" lines="full" mode="ios">
+          <ion-label position="stacked">Especie </ion-label>
+          <ion-input type="text" formControlName="species" readonly></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" (click)="presentPopover()" mode="ios">
+          <ion-label position="stacked">Raça</ion-label>
+          <ion-input
+            type="text"
+            formControlName="raza"
+            class="form-controll"
+            readonly
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" mode="ios">
+          <ion-label position="stacked">Quem sou eu: </ion-label>
+          <ion-input type="text" formControlName="description"></ion-input>
+        </ion-item>
+        <ion-button
+          class="button_rojo"
+          mode="ios"
+          type="submit"
+          [disabled]="!PetsForm.valid"
+          >Adicionar</ion-button
+        >
+        <ion-button class="button_blanco" (click)="pular()" mode="ios" *ngIf="!modaloptions"
+          >Pular</ion-button
+        >
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

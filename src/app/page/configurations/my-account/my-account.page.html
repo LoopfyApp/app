@@ -1,0 +1,43 @@
+<app-header [atras]="true" [url]=''></app-header>
+<ion-content color="primary" [scrollEvents]="true"
+(ionScroll)="onScroll($event)">
+  
+ 
+  
+    <ion-card class="ion-text-center">
+      <h3 class="title">Minha Conta</h3>
+ 
+      <ion-card-content *ngIf="user != null" class="ion-padding ion-no-margen">
+
+        <ion-item lines="none" class="ion-no-padding ion-no-margen"> 
+          <ion-avatar slot="start">
+            <img [src]="user.photo">
+          </ion-avatar>
+          <ion-label> 
+            <p>{{user.name}}</p> 
+            <small>{{user.email}}</small>
+          </ion-label>
+        </ion-item>
+        <ion-button (click)="presentAlertPrompt()" class="button_rojo ion-padding">Mudar senha</ion-button>
+        <div *ngIf="mascote != null ">
+
+ 
+          <h3 class="title ion-text-center">Meus mascotes</h3>
+     
+          <ion-item mode="ios" lines="none" class="ion-no-padding ion-no-margen" *ngFor="let datamascote of mascote">
+            <ion-avatar slot="start" > 
+              <img [src]="datamascote.photo" />
+            </ion-avatar>
+            <ion-label
+              >{{datamascote.name}}
+              <br />
+              <small>{{datamascote.description}}</small>
+            </ion-label>
+          </ion-item>
+          <ion-button (click)="newPets()" class="button_rojo ion-padding">Adicionar Pets</ion-button>
+      </div>
+
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>

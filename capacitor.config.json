@@ -1,0 +1,19 @@
+{
+    "appId": "genios360.loopfy.app",
+    "appName": "Loopfy",
+    "bundledWebRuntime": false,
+    "appVersion": "1.0.1",
+    "npmClient": "npm",
+    "webDir": "www",
+    "plugins": {
+      "SplashScreen": {
+        "launchShowDuration": 0,
+        "launchAutoHide": false
+      },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+    },
+    "cordova": {}
+  }
+  

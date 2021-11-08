@@ -1,0 +1,61 @@
+.divcover{
+    background-image: url(/assets/icon/fondo.png);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0% 37%; 
+    height: 200px;
+}
+
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+    height: 200px;
+	z-index: 3;
+	opacity: .4;
+	background-color: black;
+}
+ 
+ion-row{
+    z-index: 5;
+    position: absolute;
+}
+.center{
+    text-align: center;
+}
+.avatar{
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}
+.profile{
+    top: 20px;
+    ion-label{
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+.row-bottom{
+    width: 100%;
+    top: 130px;
+}
+ 
+ion-segment-button{
+
+    font-size: 3.4vw
+}
+ion-toolbar{
+    --background:white;
+     border-radius: 0px 0px 20px 20px;
+     height: 39px; 
+}
+ion-segment{
+    width: 100%;
+}
+.full {
+    width: 94%;
+    height: 94%;
+}

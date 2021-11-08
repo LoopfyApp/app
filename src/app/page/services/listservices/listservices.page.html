@@ -1,0 +1,54 @@
+<app-header [atras]="true" [url]="url"></app-header>
+<ion-content color="primary" [scrollEvents]="true"
+(ionScroll)="onScroll($event)">
+  <app-loadings *ngIf="!isLoadding"></app-loadings>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="isLoadding">
+
+    <ion-card *ngIf="Infopets != null">
+      <ion-item mode="ios" class="ion-no-padding ion-no-margen"  >
+        <ion-avatar slot="start" > 
+          <img [src]="Infopets.photo" />
+        </ion-avatar>
+        <ion-label
+          >{{Infopets.name}}
+          <br />
+          <small>{{Infopets.description}}</small>
+        </ion-label>
+      
+      </ion-item>
+    </ion-card>
+
+    <h4 class="ion-text-center option-center">Escolha o Serviço</h4>
+    <ion-searchbar
+      placeholder="Pesquisa Serviço"
+      [(ngModel)]="search"
+      [ngClass]="{'filter-sticky': flagFilterSticky}"
+    ></ion-searchbar>
+
+    <ion-card *ngFor="let infoData of ListService | filter:search" (click)="selectService(infoData)">
+      <ion-row class="ion-padding ion-margen">
+        <ion-col size="8">
+          <ion-label
+            >{{infoData.name}}
+            <br />
+            <small>{{infoData.description}}</small>
+          </ion-label>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button mode="ios" color="secondary">
+            {{infoData.price | currency  }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+    <h4 *ngIf="ListService.length == 0 " class="ion-text-center option-center">
+      Sem resultados
+    </h4>
+  </div>
+</ion-content>

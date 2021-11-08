@@ -1,0 +1,35 @@
+<app-header [atras]="true" [url]="url"></app-header>
+<ion-content color="primary" [scrollEvents]="true"
+(ionScroll)="onScroll($event)">
+<app-loadings *ngIf="!isLoadding"></app-loadings>
+<div *ngIf="isLoadding">
+  <ion-row class="menor">
+    <ion-col size="6">
+      <ion-item mode="ios" class="ion-no-padding ion-no-margin" lines="none">
+    
+          <img [src]="dataEspecie.logo" slot="start" />
+   
+        <ion-label>{{dataEspecie.name}} </ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item mode="ios" class="ion-no-padding ion-no-margin" lines="none">
+  
+          <img [src]="dataCategory.logo" slot="start"/>
+
+        <ion-label>{{dataCategory.name}} </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+   <app-product-subcategory [ngClass]="{'filter-sticky': flagFilterSticky}" (EmiteSubcategoria)="filteritems($event)" (EmiteOrder)="ordernar($event)" (EmiteMarcas) ="filteritemsMarcas($event)" [subcategorias]="subcategory" [marcas]="marcas"></app-product-subcategory>
+   <ion-searchbar  color="medium" [ngClass]="{'filter-sticky': flagFilterSticky}" placeholder="Pesquisa"  [(ngModel)]="search"></ion-searchbar>
+   <div *ngIf="DataProduct.length > 0">
+   <app-products-card  [typeUsers]="typeUser"  *ngFor="let products of DataProduct | filter:search" [productos]="products"  (EmiteDetails)="openModal($event)" ></app-products-card>
+  </div> 
+  <div *ngIf="DataProduct.length == 0">
+    <h1 class="center">Não há produtos.</h1>
+  </div>
+  </div>
+</ion-content>

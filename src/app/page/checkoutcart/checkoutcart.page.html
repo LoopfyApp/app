@@ -1,0 +1,282 @@
+<app-header [atras]="false"></app-header>
+<ion-content color="primary">
+  <app-loadings *ngIf="!isLoadding"></app-loadings>
+  <div *ngIf="isLoadding">
+    <div  *ngIf="!product_mode"  > 
+    <ion-card *ngIf="!product_mode"  >
+      <ion-item mode="ios" class="ion-no-padding ion-no-margin">
+        <ion-avatar slot="start" class="ion-padding">
+          <img [src]="store.photo"/>
+        </ion-avatar>
+        <ion-label>{{store.name}} </ion-label>
+      </ion-item>
+    </ion-card>
+
+
+
+
+
+    <ion-card class="ion-padding ion-margin"  *ngIf="!product_mode">
+      <ion-row *ngFor="let infoData of items" class="border_bottom ion-no-padding ion-no-margin">
+        <ion-col size="9">
+          <ion-label
+            >{{infoData.name_service}}
+            <br />
+            <small>{{infoData.description_service}}</small><br />
+            <b class="price"> {{infoData.amount| currency }} </b>
+          </ion-label>
+        </ion-col>
+        <ion-col size="3">
+          <ion-button color="danger" (click)="deleteitems(infoData)">
+            <ion-icon slot="icon-only" name="remove-circle"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="12" class="ion-no-padding ion-no-margin">
+          <p (click)="toggle_accordion(infoData)">Detalle del servicio</p>
+          <app-accordion
+            [expandHeight]="330"
+            [expanded]="accordion_expanded"
+            *ngIf="id_items==infoData.id_service"
+          >
+            <div class="reusable_accordion template_accordion">
+              <ng-container>
+                <ion-card class="itemsService">
+                  <ion-item mode="ios">
+                    <ion-label>
+                      <b>Data de serviço</b>
+                      {{infoData.date_service}}
+                      <br />
+                      <b>Hora de serviço</b> {{infoData.hours}}
+                    </ion-label>
+                  </ion-item>
+                  <ion-item mode="ios">
+                    <ion-avatar slot="start">
+                      <img [src]="infoData.pets_photo" />
+                    </ion-avatar>
+                    <ion-label>{{infoData.pets}} </ion-label>
+                  </ion-item>
+                </ion-card>
+              </ng-container>
+            </div>
+          </app-accordion>
+        </ion-col>
+      </ion-row>
+      <ion-row class="no-border">
+        <ion-col size="6" class="monto">TOTAL</ion-col>
+        <ion-col size="6" class="monto ion-text-right">
+          <small>{{totalProducto | currency }}</small></ion-col
+        >
+      </ion-row>
+      <ion-row  class="no-border">
+        <ion-col  size="6">
+
+          <ion-button
+          color="danger"
+          expand="full"
+          shape="round"
+          class="ion-text-center"
+          (click)="addservice()"
+        >
+          Adicionar Item
+        </ion-button>
+
+        </ion-col>
+        <ion-col  size="6">
+
+      <ion-button
+        color="danger"
+        expand="full"
+        shape="round"
+        class="ion-text-center"
+        (click)="cancelar()"
+      >
+        Cancelar compra
+      </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <br />
+    <br />
+    <ion-button
+ 
+    (click)="presentModal(1)"
+      color="secondary"
+      expand="full"
+      shape="round"
+      class="fixed ion-text-center"
+    >
+      Fazer Pagamento <small>{{shippigAMount+totalProducto | currency }}</small>
+    </ion-button>
+  </div>
+
+  <div  *ngIf="product_mode"  > 
+
+    <ion-card *ngIf="product_mode">
+      <ion-item routerLink="/home/red/loja/perfil-loja/{{store.id}}" mode="ios" class="ion-no-padding ion-no-margin">
+        <ion-avatar slot="start">
+          <img [src]="store.photo" class="ion-padding" />
+        </ion-avatar>
+        <ion-label>{{store.razon}} </ion-label>
+      </ion-item>
+    </ion-card>
+
+  <ion-card class="ion-padding ion-margin" *ngIf="product_mode">
+    <ion-row *ngFor="let infoData of itemsProductos" class="border_bottom ion-no-padding ion-no-margin">
+    <ion-col size="3">
+
+      <img [src]="infoData.products.photo" />
+    </ion-col>
+      <ion-col size="7">
+        <ion-label
+          >
+ 
+          {{infoData.products.name}}
+          <br />
+          <small>{{infoData.cantidad}} x {{infoData.amount | currency}}</small><br />
+          <b class="price"> {{infoData.total_amount | currency }} </b>
+        </ion-label>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="danger"  expand="block"   (click)="deleteitemsProducts(infoData.id)">
+         <span class="mas">-</span>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="no-border">
+      <ion-col size="6" class="monto">Sub-TOTAL</ion-col>
+      <ion-col size="6" class="monto ion-text-right">
+        {{totalProducto | currency }}</ion-col
+      >
+      <ion-col size="6" class="monto" *ngIf="shippigAMount !=0 ">FRETE</ion-col>
+      <ion-col size="6" class="monto ion-text-right" *ngIf="shippigAMount !=0 ">
+        {{shippigAMount | currency}}
+      </ion-col>
+      <ion-col size="6" class="monto">TOTAL</ion-col>
+      <ion-col size="6" class="monto ion-text-right">
+        {{shippigAMount+totalProducto | currency }}
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row  class="no-border">
+      <ion-col  size="6">
+
+        <ion-button
+        color="danger"
+        expand="full"
+        shape="round"
+        class="ion-text-center"
+        routerLink="/home/red/loja/perfil-loja/{{store.id}}"
+      >
+        Adicionar Item
+      </ion-button>
+
+      </ion-col>
+      <ion-col  size="6">
+
+    <ion-button
+      color="danger"
+      expand="full"
+      shape="round"
+      class="ion-text-center"
+      (click)="cancelarCompra()"
+    >
+      Cancelar compra
+    </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+<ion-card mode="ios">
+  <h6 class="colorBlue">SELECIONAR O TIPO DE ENVIO</h6>
+  <ion-segment (ionChange)="typeShipping($event)"   [(ngModel)]="shippigMethod">
+    <ion-segment-button value="1">
+      <ion-label>Pegar na loja</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-label>Receber em Casa</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="shippigMethod==1">
+    <br>
+    <br> 
+    <ion-button
+ 
+    (click)="presentModal()"
+      color="secondary"
+      expand="full"
+      shape="round"
+      class="fixed ion-text-center"
+    >
+      Fazer Pagamento <small>{{shippigAMount+totalProducto | currency }}</small>
+    </ion-button>  
+    <br> 
+    <br>
+  </div>
+  <div *ngIf="shippigMethod==2">
+
+    <ion-row class="no-border ion-padding">
+      <ion-col size="12" class="monto">CEP</ion-col>
+      <ion-col size="12" class="monto ion-border">
+        <ion-input placeholder="Insira seu endereço" style="border-bottom: 1px solid #0e0e0e;" type="number" (ionChange)="datacep($event)" ></ion-input>
+      </ion-col>
+      <ion-col size="12" *ngIf="enderezo!=null">
+        {{enderezo}}
+      </ion-col>
+
+      <ion-col size="3" *ngIf="enderezo!=null">
+        <ion-textarea clearOnEdit="true" placeholder="Numero" style="border-bottom: 1px solid #0e0e0e;"></ion-textarea>
+    </ion-col>    
+    <ion-col size="9" *ngIf="enderezo!=null">
+      <ion-textarea clearOnEdit="true" placeholder="Complemento" style="border-bottom: 1px solid #0e0e0e;"></ion-textarea>
+  </ion-col>
+      <ion-col size="12" *ngIf="enderezo!=null">
+      
+          <ion-textarea clearOnEdit="true" placeholder="Referência" style="border-bottom: 1px solid #0e0e0e;"></ion-textarea>
+   
+      </ion-col>
+ 
+    </ion-row>
+    <ion-button
+    *ngIf="shippigAMount ==0 "
+    (click)="caluclarfrete()"
+      color="secondary"
+      expand="full"
+      shape="round"
+      class="fixed ion-text-center"
+    >
+    Calcular Frete
+    </ion-button>  
+
+    <ion-button
+    *ngIf="shippigAMount != 0 "
+    (click)="shippigAMount=0"
+      color="secondary"
+      expand="full"
+      shape="round"
+      class="fixed ion-text-center"
+    >
+    Cancelar Frete
+    </ion-button>  
+
+    <ion-button
+    *ngIf="shippigAMount != 0 "
+    (click)="presentModal(2)"
+      color="secondary"
+      expand="full"
+      shape="round"
+      class="fixed ion-text-center"
+    >
+      Fazer Pagamento <small>{{shippigAMount+totalProducto | currency }}</small>
+    </ion-button>  
+
+  </div>
+</ion-card>
+ 
+    
+  </div>
+
+ 
+    </div>
+</ion-content>

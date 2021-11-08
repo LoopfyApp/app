@@ -1,0 +1,36 @@
+<app-header></app-header>
+<ion-content color="primary" [scrollEvents]="true"
+(ionScroll)="onScroll($event)">
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+  <ion-toolbar mode="ios" class="ion-margin-bottom" [ngClass]="{'filter-sticky': flagFilterSticky}">
+    <ion-segment mode="ios"  class="ion-no-margin ion-no-padding" (ionChange)="redesValue($event)"  [(ngModel)]="redeOption" >
+      <ion-segment-button value="1" mode="ios">
+        Recomendações
+      </ion-segment-button>
+      <ion-segment-button value="2" mode="ios"> Minha Rede </ion-segment-button>
+      <ion-segment-button value="3" mode="ios"> Promoções </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <div class="ion-padding ion-margin ion-text-center" *ngIf="!loadings">
+    <app-spinner></app-spinner>	
+  </div>
+
+  <app-posts-rede   (ProfileId)="profilePage($event)" (EmitePost)="reloads($event)" [posts]="post" *ngIf="(redeOption==1 || redeOption==2) && loadings"></app-posts-rede>
+
+  <div *ngIf="redeOption==3 &&  DataProduct.length > 0">
+    <app-products-card [typeUsers]="typeUser"   *ngFor="let products of DataProduct" [productos]="products"  (EmiteDetails)="openModal($event)" ></app-products-card>
+   </div> 
+   <div *ngIf="redeOption==3 && DataProduct.length == 0" >
+     <h4 class="ion-text-center option-center">Não há produtos.</h4>
+   </div>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed"  *ngIf="redeOption==2" (click)="postNew()">
+    <ion-fab-button fill="outline"  >
+      <ion-icon class="full" src="/assets/icon/plus.svg"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+   
+</ion-content>

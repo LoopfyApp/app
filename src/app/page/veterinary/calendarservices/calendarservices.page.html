@@ -1,0 +1,74 @@
+<app-header [atras]="true" [url]="url"></app-header>
+<ion-content color="primary"   
+[scrollEvents]="true"
+(ionScroll)="onScroll($event)">
+
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
+  <app-loadings *ngIf="!isLoadding"></app-loadings>
+
+  <div *ngIf="isLoadding">
+    <ion-card>
+      <ion-item mode="ios" class="ion-no-padding ion-no-margen">
+        <ion-avatar slot="start">
+          <img [src]="Infopets?.photo" />
+        </ion-avatar>
+        <ion-label
+          >{{Infopets.name}}
+          <br />
+          <small>{{Infopets.description}}</small>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+
+    <ion-row class="ion-no-padding ion-no-margin bgwhite" [ngClass]="{'filter-sticky': flagFilterSticky}" >
+      <ion-col size="2" class="center">
+        <ion-icon
+          color="danger"
+          name="chevron-back"
+          (click)="back()"
+        ></ion-icon>
+      </ion-col>
+
+      <ion-col size="8" class="center">
+        <h4 class="ion-text-center option-center">{{ viewTitle }}</h4>
+      </ion-col>
+
+      <ion-col size="2" class="ion-text-right center">
+        <ion-icon
+          (click)="next()"
+          color="danger"
+          name="chevron-forward"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+    <calendar
+      [calendarMode]="'month'"
+      [currentDate]="selectedDate"
+      (onEventSelected)="onEventSelected($event)"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+      [showEventDetail]="false"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      [startHour]="6"
+      [endHour]="20"
+      [step]="30"
+      [startingDayWeek]="1"
+      [markDisabled]="markDisabled"
+    >
+    </calendar>
+
+    <ion-row>
+      <ion-col size="4" *ngFor="let hours of datelisthour">
+        <ion-button shape="round" [color]="selecthours==hours.hours ? 'tertiary' : 'secondary'" class="ion-margin" (click)="agendarData(hours)" > 
+          {{hours.hours}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="full" color="secondary" [disabled]="selecthours===null" (click)="verifycart()"><ion-icon name="calendar-number-outline"></ion-icon>&nbsp; &nbsp;Agendar</ion-button>
+      </ion-col>
+    </ion-row>
+    <br>  <br>
+  </div>
+</ion-content>

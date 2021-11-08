@@ -1,0 +1,55 @@
+
+ion-card {
+    margin-inline: 0px;
+    padding-top: 0px;
+    margin: 0px;
+    padding-bottom: 15px;
+    .item-inner,.item-native , ion-item{
+     border: none;
+ }
+ 
+ ion-buttons{
+     margin-right: -10px;
+ }
+}
+ion-row {
+ ion-buttons{
+     ion-icon{
+         font-size:14px;
+     } 
+ } 
+}
+
+.padding{
+ padding-left: 10px;
+ padding-right: 10px;
+}
+
+.profilepic{
+    width: 100%;
+    height: auto;
+}
+
+.cardPost{
+    margin-top: 3%;
+}
+.itemComment{
+    margin: 2%;
+    background-color: #cecece4d;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.black{
+    color: black;
+    font-weight: 300;
+    font-size:12px;
+}
+.tertiary{
+    color: var(--ion-color-tertiary);
+    font-size:13px;
+}
+.comment ion-avatar{
+    padding: 0px;
+    margin: 0px;
+}

@@ -1,0 +1,62 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title color="secondary"> Denunciar</ion-title>
+ 
+      <ion-buttons slot="end" mode="ios">
+        <ion-button color="secondary" mode="ios" (click)="close()">
+          <ion-icon slot="icon-only" mode="ios" name="close-circle"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary" class="ion-padding ion-text-center">
+  <h3>Tem certeza que deseja denunciar essa publicação?</h3>
+  <p>Escreve um comentário sobre o motivo da sua denúncia.</p>
+
+  <ion-item class="ion-margin-bottom">
+    <ion-label position="floating">Digite aqui</ion-label>
+    <ion-textarea [(ngModel)]="comment" rows="5"></ion-textarea>
+  </ion-item>
+
+  <h2>{{ msgerror }}</h2>
+
+  <ion-item
+    mode="ios"
+    class="ion-no-padding ion-no-margen"
+    (click)="selectmascote()"
+    *ngIf="!selectMascte"
+  >
+    <ion-label class="ion-padding"> Selecione Mascote </ion-label>
+
+    <ion-icon color="secondary" slot="end" name="add-circle"></ion-icon>
+  </ion-item>
+
+  <ion-item
+    mode="ios"
+    class="ion-no-padding ion-no-margen"
+    *ngIf="selectMascte"
+    (click)="selectmascote()"
+  >
+    <ion-avatar slot="start">
+      <img [src]="datamascote.photo" />
+    </ion-avatar>
+    <ion-label
+      >{{ datamascote.name }}
+      <br />
+      <small>{{ datamascote.description }}</small>
+    </ion-label>
+
+    <ion-icon
+      mode="ios"
+      color="secondary"
+      slot="end"
+      name="close-circle-outline"
+    ></ion-icon>
+  </ion-item>
+
+  <ion-button color="secondary" (click)="sendReport()">
+    <ion-icon slot="end" name="send"></ion-icon>
+    Enviar Denúncia
+  </ion-button>
+</ion-content>

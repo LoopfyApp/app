@@ -1,0 +1,110 @@
+ 
+ 
+  <ion-menu contentId="main-content" type="overlay" menuId="home-menu">
+  
+    <ion-content>
+        <div class="top-div">
+          <div class="foto">
+            <div class="img-box">
+              <img class="profilepic" [src]="photo">
+            </div>
+          </div>
+          <div class="textos">
+            <div class="nome"><label><h2>{{ name }}</h2></label></div>
+    
+          </div>
+        </div>
+  
+        <div *ngFor="let p of pages">
+          <ion-menu-toggle *ngIf="p.url">
+            <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active" lines="full" detail="false" >
+              <!-- <ion-icon [name]="p.icon" slot="start"></ion-icon> -->
+              <ion-icon [src]="p.icon" slot="start" size="large"></ion-icon>
+              <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+              <ion-label> {{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+  
+          <!-- E -->
+          <ion-item button *ngIf="p.children?.length > 0" (click)="p.open = !p.open" [class.active-parent]="p.open" detail="false" lines="full">
+            <ion-icon [src]="p.icon" slot="start" size="large"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward-outline" *ngIf="!p.open"></ion-icon>
+            <ion-icon slot="end" name="chevron-down-outline" *ngIf="p.open"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+  
+          <div *ngIf="p.open">
+            <ion-item *ngFor="let sub of p.children" (click)="gotoRoute(sub)" routerDirection="root" routerLinkActive="active" detail="false"  lines="full">
+              <ion-icon [name]="sub.icon" slot="start"></ion-icon>
+              <ion-label> {{ sub.title }} </ion-label>
+            </ion-item>
+          </div>
+          <!-- E -->
+        </div>
+        <div class="botao-meio">
+          <ion-menu-toggle>
+            <ion-button fill="clear" (click)="logout()">
+              <img id="imgbutton" src="/assets/icon/botonrojo.svg">
+              <label id="label-entrar">Sair</label>
+            </ion-button>
+          </ion-menu-toggle>
+        </div>
+
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+ 
+
+ 
+<ion-content> 
+
+  <ion-fab vertical="center" horizontal="right" class="cartbuttons"  slot="fixed" *ngIf="cart">
+    <ion-fab-button style="--background:#FF464E;--color:white" (click)="cartCheckout()">
+      <ion-icon style="font-size: 40px;"  name="cart-outline" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="red" *ngIf="type==1">
+        <ion-icon  src="/assets/button/men-home.svg"></ion-icon>
+   
+      </ion-tab-button>
+      <ion-tab-button tab="red"  [href]="urlprofile" *ngIf="type!=1">
+        <ion-icon  src="/assets/button/men-home.svg"></ion-icon>
+   
+      </ion-tab-button>
+
+       
+      <ion-tab-button tab="product">
+        <ion-icon  src="/assets/button/men-shop.svg"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button  >
+
+
+ 
+      </ion-tab-button>
+
+      <ion-tab-button tab="veterinary">
+        <ion-icon  src="/assets/button/men-salud.svg"></ion-icon>
+      </ion-tab-button>
+
+      
+      <ion-tab-button tab="services">
+        <ion-icon  src="/assets/button/service.svg"></ion-icon>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button style="--background:#FF464E;--color:white">
+      <ion-icon style="font-size: 40px;" src="/assets/button/men-busqueda.svg" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  
+
+
+</ion-content>

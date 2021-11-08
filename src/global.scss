@@ -1,0 +1,410 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.specialClass{
+  height: 40px;
+  border-radius: 20px;
+  padding: 10px;
+  color: black;
+}
+
+.button_rojo{
+    background-image: url(/assets/button/botonrojo.svg);
+    --background: transparent !important;
+    background-repeat: no-repeat  !important;
+    background-size: 100% 100%;
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+    --color: white;
+    text-align: center;
+    --border-radius: 0px;
+    --border: 0px !important;
+    --background-hover: transparent !important;
+    --background-focused: transparent !important;
+    --background-activated: transparent !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+ 
+}
+
+
+.button_blanco{
+    background-image: url(/assets/button/boton_blanco.svg);
+    --background: transparent !important;
+    background-repeat: no-repeat  !important;
+    background-size: 100% 100%;
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+    --color: #FF464E;
+    text-align: center;
+    --border-radius: 0px;
+    --border: 0px !important;
+    --background-hover: transparent !important;
+    --background-focused: transparent !important;
+    --background-activated: transparent !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+ 
+}
+ 
+
+
+.button_verdeagua{
+  background-image: url(/assets/icon/verdeagua.svg);
+  --background: transparent !important;
+  background-repeat: no-repeat  !important;
+  background-size: 100% 100%;
+  width: 100%;
+  padding: 10px;
+  height: 50px;
+  --color: #FFF;
+  text-align: center;
+  --border-radius: 0px;
+  --border: 0px !important;
+  --background-hover: transparent !important;
+  --background-focused: transparent !important;
+  --background-activated: transparent !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.button_transparente{
+  background-image: url(/assets/icon/transparentbutton.svg);
+  --background: transparent !important;
+  background-repeat: no-repeat  !important;
+  background-size: 100% 100%;
+  width: 100%;
+  padding: 10px;
+  height: 50px;
+  --color: #FFF;
+  text-align: center;
+  --border-radius: 0px;
+  --border: 0px !important;
+  --background-hover: transparent !important;
+  --background-focused: transparent !important;
+  --background-activated: transparent !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.none{
+    --background: transparent !important;  
+     text-align: center;
+    --border-radius: 0px;
+    --border: 0px !important;
+    --background-hover: transparent !important;
+    --background-focused: transparent !important;
+    --background-activated: transparent !important;
+    width: 100%;
+}
+.ancho{
+    width: 100%;
+    text-align: center;
+    margin-top: 25%;
+}
+.center{
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    
+}
+.logo_home{
+    width: 40%;
+}
+.item-interactive.ion-invalid {
+    border-bottom: 1px solid #f7484f;
+}
+
+.sc-ion-loading-ios-h {
+    --background: #ffffff;
+    --spinner-color: #8b383d;
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
+    color: #8b363b;
+    font-size: 25px;
+    --height: 140px;
+}
+.black{
+    color: black !important;
+    text-align: justify;
+}
+.red{
+    color: #8b363b;   
+}
+
+.alert-custom{
+.alert-wrapper.sc-ion-alert-md,.alert-wrapper.sc-ion-alert-ios{
+    border-radius: 20px;
+}
+.alert-title.sc-ion-alert-md, .alert-title.sc-ion-alert-ios {
+    color: #0c0c0c;
+    font-size: 20px;
+    font-weight: 500;
+}
+.alert-sub-title.sc-ion-alert-md, .alert-sub-title.sc-ion-alert-ios {
+    color: #F44336;
+    font-size: 16px;
+}
+
+.alert-button.sc-ion-alert-md , .alert-button.sc-ion-alert-ios{
+ 
+    -webkit-padding-start: 0px;
+    padding-inline-start: 0px;
+    -webkit-padding-end: 0px;
+    padding-inline-end: 0px;
+    color: white;
+    background-color: var(--ion-color-danger-shade);
+    border-radius: 10px;
+    width: 40%;
+    min-width: 40%; 
+    text-align: center;
+    align-content: center;
+    padding: 10px;
+    margin: 10px;
+}
+.alert-button-inner.sc-ion-alert-md, .alert-button-inner.sc-ion-alert-ios {
+    -ms-flex-pack: end;
+    justify-content: center;
+}
+
+}
+
+.customPopover .popover-content{
+  left: 0px !important;
+  width: 100%;
+  height: 100%;
+  top: 50% !important; 
+}
+
+.mascoteshet .alert-wrapper.sc-ion-alert-ios {
+ 
+  min-width: 90%!important;
+}
+.mascoteshet .alert-checkbox-label.sc-ion-alert-ios,
+.mascoteshet  .alert-button.sc-ion-alert-ios{
+  --color: #0c0c0c!important;
+  color: #0c0c0c!important;
+}
+
+.mascoteshet .action-sheet-wrapper, .sc-ion-action-sheet-ios-h {
+ 
+  --color: #0c0c0c!important;
+  --button-color: var(--ion-color-secondar)!important;
+	transform-origin: bottom !important;
+  }
+  .sc-ion-picker-ios-h,.picker-wrapper.sc-ion-picker-ios{
+    --color: #0c0c0c!important;
+  }
+  .picker-columns.sc-ion-picker-ios {
+    background: var(--ion-color-secondary-contrast);
+}
+.picker-above-highlight.sc-ion-picker-ios,.picker-below-highlight.sc-ion-picker-ios{
+  background: none;
+}
+.picker-toolbar.sc-ion-picker-ios {
+  
+  background: var(--ion-color-secondary);
+  
+}
+.mascote .popover-content {
+	width: 100%;
+	height:100%;
+	bottom: 0 !important;
+	left: 0 !important;
+	top: 150px !important;
+	transform-origin: bottom !important;
+  }
+  ion-tab-button{
+    --color-focused	:var(--ion-color-secondary);
+    --color-selected:var(--ion-color-secondary);
+  }
+  .button_circle{
+      --border-radius:100%;
+      width: 50px;
+      height: 50px;
+      img{
+          width: 50px;
+          height: 50px;
+      }
+  }
+
+  .lds-spinner {
+    color: official;
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+  .lds-spinner div {
+    transform-origin: 40px 40px;
+    animation: lds-spinner 1.2s linear infinite;
+  }
+  .lds-spinner div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 37px;
+    width: 6px;
+    height: 18px;
+    border-radius: 20%;
+    background: #ff464e;
+  }
+  .lds-spinner div:nth-child(1) {
+    transform: rotate(0deg);
+    animation-delay: -1.1s;
+  }
+  .lds-spinner div:nth-child(2) {
+    transform: rotate(30deg);
+    animation-delay: -1s;
+  }
+  .lds-spinner div:nth-child(3) {
+    transform: rotate(60deg);
+    animation-delay: -0.9s;
+  }
+  .lds-spinner div:nth-child(4) {
+    transform: rotate(90deg);
+    animation-delay: -0.8s;
+  }
+  .lds-spinner div:nth-child(5) {
+    transform: rotate(120deg);
+    animation-delay: -0.7s;
+  }
+  .lds-spinner div:nth-child(6) {
+    transform: rotate(150deg);
+    animation-delay: -0.6s;
+  }
+  .lds-spinner div:nth-child(7) {
+    transform: rotate(180deg);
+    animation-delay: -0.5s;
+  }
+  .lds-spinner div:nth-child(8) {
+    transform: rotate(210deg);
+    animation-delay: -0.4s;
+  }
+  .lds-spinner div:nth-child(9) {
+    transform: rotate(240deg);
+    animation-delay: -0.3s;
+  }
+  .lds-spinner div:nth-child(10) {
+    transform: rotate(270deg);
+    animation-delay: -0.2s;
+  }
+  .lds-spinner div:nth-child(11) {
+    transform: rotate(300deg);
+    animation-delay: -0.1s;
+  }
+  .lds-spinner div:nth-child(12) {
+    transform: rotate(330deg);
+    animation-delay: 0s;
+  }
+  @keyframes lds-spinner {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+.actionSheetClass{
+  .action-sheet-title{
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--ion-color-secondary);
+  }
+  .action-sheet-button.sc-ion-action-sheet-ios {
+    font-weight: bold;  
+    color: var(--ion-color-danger); 
+}
+.action-sheet-button-inner.sc-ion-action-sheet-ios{
+  justify-content: left;
+}
+.action-sheet-button.sc-ion-action-sheet-ios .action-sheet-icon.sc-ion-action-sheet-ios {
+  padding-right: 10px;
+}
+}
+.botton-letf{
+  span{
+    justify-content: left !important;
+  }
+  ion-icon{
+    padding: 10px;
+  }
+}
+
+.monthview-selected{
+  font-weight: bold;
+  background-color: var(--ion-color-danger) !important; 
+  color: #FFF !important;
+}
+.monthview-disabled{
+  font-weight: bold;
+  background-color:  transparent !important; 
+  color: #cecece !important;
+}
+.monthview-datetable{
+  background-color: white !important; 
+
+}
+.table-bordered {border: 1px solid #f1f0efc4 !important; }
+.bgwhite{
+  background-color: white !important; 
+ }
+ .table-bordered{
+  text-transform: capitalize;
+}
+.filter-sticky {
+  position: sticky;
+  z-index: 9;
+  top: -1px;
+  background: var(--ion-color-light-app);
+}
+
+@font-face {
+	font-family: 'adws';
+	src: url(/assets/ADayWithoutSun.otf);
+  }
+h3,h4,h5{
+  font-family: 'adws';
+  font-size: 15vw !important;
+}
+.shadow-w-border {
+  border-radius: 10px;
+  box-shadow: 3px 4px 8px 0px rgb(0 0 0 / 50%);
+  -webkit-box-shadow: 3px 4px 8px 0px rgb(0 0 0 / 50%);
+}
+.class-products .modal-wrapper {
+  --height: 95vh;
+  --max-height: 95vh;
+  bottom: 0vh;
+  position: absolute;
+  border-radius:20px 20px 0px 0px;
+}

@@ -1,0 +1,13 @@
+<app-header [atras]="true" [url]=''></app-header>
+<ion-content color="primary" [scrollEvents]="true"
+(ionScroll)="onScroll($event)">
+  
+  
+    <ion-card *ngFor="let option of objOptions" class="ion-padding">
+      <ion-item [routerLink]="option.url" lines="none">
+        <ion-icon [name]="option.icon" slot="start"></ion-icon>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        <ion-label>{{option.title}}</ion-label>
+      </ion-item>
+    </ion-card>  
+</ion-content>

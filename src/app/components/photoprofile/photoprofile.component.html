@@ -1,0 +1,70 @@
+<ion-content>
+  <div class="header">
+		<div class="back">
+			<div tappable (click)="goBack()" class="back-button">
+	            <ion-icon src="/assets/button/flecha-hacia-atras.svg"></ion-icon>
+	        </div>
+		</div>
+		<div class="exit">
+			<div tappable (click)="goBack()" class="exit-button">
+	            <ion-icon src="/assets/button/exitbutton.svg"></ion-icon>
+	        </div>
+		</div>
+	</div>
+	<div class="sub-header">
+		Envie sua foto favorita
+	</div>
+	<div class="foto-div">
+		<div tappable class="img-box" (click)="addPhotoToGallery()">
+	        <ion-img class="profilepic" *ngIf="photo" [src]="photo"></ion-img>
+	        <img class="profilepic" src="/assets/button/no-camaras.png" *ngIf="!photo">
+        </div>
+	</div><br> 
+  <div *ngIf="imageChangedEvent != ''"> 
+    <image-cropper
+    [imageBase64]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1/1"
+    [roundCropper]="true"
+    [resizeToWidth]="200" 
+    [resizeToHeight]="200"
+    (imageCropped)="imageCropped($event)"
+ 
+></image-cropper>
+</div>
+		<div class="botoes" *ngIf="imageChangedEvent == ''">
+			<div class="botao-half">
+				<ion-button fill="clear" (click)="addPhotoToGallery()">
+			        <ion-label id="label-entrar">Câmera</ion-label>
+		      	</ion-button>
+			</div>
+			<div class="botao-half">
+				<ion-button fill="clear" (click)="pickFromGallery()">
+			        <ion-label id="label-entrar">Galeria</ion-label>
+		      	</ion-button>
+			</div>
+		</div>
+		<div class="botoes" *ngIf="imageChangedEvent != ''">
+			<div class="botao-half">
+				<ion-button fill="clear" (click)="goBack()">
+			        <ion-label id="label-entrar">Terminar</ion-label>
+		      	</ion-button>
+			</div>
+			<div class="botao-half">
+				<ion-button fill="clear" (click)="cancelar()">
+			        <ion-label id="label-entrar">Cancelar</ion-label>
+		      	</ion-button>
+			</div>
+		</div>
+	 
+		<div class="botao-post">
+			<div class="botao-meio">
+				<ion-button fill="clear" id="postar" (click)="goBack()">
+			        <ion-label id="label-entrar">Pular</ion-label>
+		      	</ion-button>
+			</div>
+		</div>
+
+ 
+
+</ion-content>

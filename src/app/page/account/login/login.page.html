@@ -1,0 +1,30 @@
+<ion-content color="primary">
+  <div class="ancho center  ion-padding">
+    <img src="/assets/icon/loppfy.svg" class="logo_home" />
+  </div>
+  
+
+  <form [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
+    <ion-item mode="ios">
+      <ion-label mode="ios" position="stacked">E-MAIL: </ion-label>
+      <ion-input mode="ios" formControlName="email" type="email" required></ion-input>
+      <ion-icon
+        mode="ios"
+        name="person"
+        color="secondary"
+        slot="end"
+      ></ion-icon>
+    </ion-item>
+    <ion-item mode="ios">
+      <ion-label mode="ios" position="stacked">PASSWORD: </ion-label>
+      <ion-input mode="ios" formControlName="password" [type]="typeOption" required></ion-input>
+      <ion-icon *ngIf="viewPassword" (click)="passwordview(false)" mode="ios" name="eye" color="secondary" slot="end"></ion-icon>
+      <ion-icon *ngIf="!viewPassword" (click)="passwordview(true)" name="eye-off" mode="ios" color="secondary" slot="end"></ion-icon>
+    </ion-item>
+    <div class="center  ion-padding">
+      <ion-button class="button_rojo" mode="ios"  type="submit" [disabled]="!validations_form.valid">Entrar Login</ion-button>
+      <ion-button class="none" mode="ios" (click)="reset()">Esqueceu sua senha?</ion-button>
+      <ion-button class="button_rojo" mode="ios" (click)="register()">Registre-se</ion-button>
+    </div>
+  </form>
+</ion-content>

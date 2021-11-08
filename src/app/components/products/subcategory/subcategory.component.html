@@ -1,0 +1,81 @@
+<ion-segment
+class="ion-padding background"
+mode="ios"
+scrollable
+*ngIf="selectFilter"
+>
+<ion-button
+size="small"
+(click)="presentActionSheet()"
+>
+  <ion-icon  slot="icon-only"  name="filter-outline"></ion-icon>
+</ion-button>
+<ion-button
+mode="ios"
+size="small"
+ 
+[color]="selectItem==0 ? 'primary' : 'secondary'"
+class="shadow-w-border"
+(click)="selectItems(0)"
+>
+<small class="text-filter">
+  Todas
+</small> 
+</ion-button>
+<ion-button
+  mode="ios"
+  size="small"
+ 
+  
+  
+  class="shadow-w-border"
+  *ngFor="let item of subcategorias; let i=index"
+  [color]="selectItem==item.subcategories.id ? 'primary' : 'secondary'"
+(click)="selectItems(item.subcategories.id)"
+>
+  <small class="text-filter">
+    {{item.subcategories.name}}
+  </small> 
+</ion-button>
+</ion-segment>
+
+<ion-segment
+class="ion-padding background"
+mode="ios"
+scrollable
+*ngIf="!selectFilter"
+>
+<ion-button
+size="small"
+(click)="presentActionSheet()"
+>
+  <ion-icon  slot="icon-only"  name="filter-outline"></ion-icon>
+</ion-button>
+<ion-button
+mode="ios"
+size="small"
+ 
+[color]="selectItemMarcas==0 ? 'primary' : 'secondary'"
+class="shadow-w-border"
+(click)="selectItems(0)"
+>
+<small class="text-filter">
+  Todas
+</small> 
+</ion-button>
+<ion-button
+  mode="ios"
+  size="small"
+ 
+  
+  
+  class="shadow-w-border"
+  *ngFor="let item of marcas; let i=index"
+  [color]="selectItemMarcas==item.id ? 'primary' : 'secondary'"
+(click)="selectItems(item.id)"
+>
+  <small class="text-filter">
+    {{item.name}}
+  </small> 
+</ion-button>
+</ion-segment>

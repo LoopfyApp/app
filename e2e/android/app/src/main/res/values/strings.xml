@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Loopfy</string>
+    <string name="title_activity_main">Loopfy</string>
+    <string name="package_name">com.genios360.nimbus</string>
+    <string name="custom_url_scheme">com.genios360.nimbus</string>
+    <string name="fb_app_id">266554778033725</string>
+    <string name="fb_app_name">Loopfy</string>
+</resources>

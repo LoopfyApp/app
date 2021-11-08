@@ -1,0 +1,133 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title color="secondary" class="ion-text-wrap"> Escolha a forma de pagamento </ion-title>
+      <ion-buttons slot="end" mode="ios"  >
+        <ion-button color="secondary" mode="ios" (click)="dismissModal()" >
+          <ion-icon slot="icon-only" mode="ios" name="close-circle"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+ 
+  <ion-grid fixed>
+    <ion-row class="ion-text-center">
+      <ion-col size="6" [ngClass]="{'ativo' : botaoCredit}">
+        <ion-icon size="large" name="card-outline" (click)="FunctionCreditToggle()"></ion-icon><br>
+         Crédito
+      </ion-col>
+      <ion-col size="6" [ngClass]="{'ativo' : botaoBoleto}" style="display: none;">
+        <ion-icon size="large" name="reader-outline" (click)="BoletoToggle()"></ion-icon><br>
+        Boleto
+      </ion-col>
+      <ion-col size="3" [ngClass]="{'ativo' : botaoPix}" style="display: none;">
+        <ion-icon size="large" name="qr-code-outline"></ion-icon><br>
+        Pix
+      </ion-col>
+      <ion-col size="3" [ngClass]="{'ativo' : botaoDebit}" style="display: none;">
+        <ion-icon size="large" name="card-outline"></ion-icon><br>
+         Débito
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="boletoToggle">
+    <ion-card class="ion-padding ion-margin">
+      <ion-card-content>
+        <h3>Valor: {{total | currency}}</h3>
+        <p>Data de vencimento: {{ dateFecha | date:'dd/MM/yyyy'}}</p>
+
+
+        <ion-item lines="full" >
+         
+          <ion-label position="stacked" >CPF:</ion-label>
+          <ion-input type="text" [(ngModel)]="cpf" ></ion-input>
+        </ion-item>
+  
+        <ion-item lines="full" class="no-padding" mode="ios">
+          <ion-label position="stacked">Data de Nascimento</ion-label>
+          <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="birthday" mode="ios"  okText="ok" cancelText="Cancelar"></ion-datetime>
+           
+          </ion-item> 
+
+          <ion-item lines="full" >
+         
+            <ion-label position="stacked" >Telefone:</ion-label>
+            <ion-input type="number" [(ngModel)]="phone" ></ion-input>
+          </ion-item>
+
+      	<ion-button class="button_rojo" mode="ios"   (click)="emitirBoleto()">
+          Emitir &nbsp;&nbsp;<ion-icon size="small" name="send"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="creditToggle">
+    <ion-card color="primary" class="ion-no-padding ion-no-margin">
+      <ion-card-content class="ion-no-padding ion-no-margin">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="12">
+              <ion-label><small>Número do Cartão</small></ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">
+              <ion-input (ionChange)='onChangeFirst($event.target.value)' #firstCard placeholder="XXXX"></ion-input>
+            </ion-col>
+            <ion-col size="3">
+              <ion-input (ionChange)='onChangeSecond($event.target.value)' #secondCard placeholder="XXXX"></ion-input>
+            </ion-col>
+            <ion-col size="3">
+              <ion-input (ionChange)='onChangeThird($event.target.value)' #thirdCard placeholder="XXXX"></ion-input>
+            </ion-col>
+            <ion-col size="3">
+              <ion-input #fourthCard placeholder="XXXX"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid fixed>
+          <ion-row>
+
+            <ion-col size="4">
+              <ion-label position="fixed"><small>CVV</small></ion-label>
+              <ion-input [maxlength]="3" [minlength]="3"   placeholder="XXXX"></ion-input>
+            
+          </ion-col>
+            <ion-col size="4">
+                <ion-label position="fixed"><small>Mês Validade</small></ion-label>
+                <ion-input #mes [maxlength]="2" [minlength]="2" (ionChange)='onChangeTime($event.target.value)' placeholder="XX"></ion-input>
+              
+            </ion-col>
+            <ion-col size="4">
+                <ion-label position="fixed"><small>Ano  Validade</small></ion-label>
+                <ion-input [maxlength]="4" [minlength]="4" (ionChange)='onChangeAno($event.target.value)'  #ano placeholder="XXXX"></ion-input>
+              
+            </ion-col>
+          </ion-row>
+          
+          <ion-row>
+            <ion-col size="12">Pagamentos Parcelados</ion-col>
+            <ion-col size="12">
+              <ion-select  okText="Aceitar" cancelText="Cancelar" [interfaceOptions]="customActionSheetOptions" interface="action-sheet">
+                <ion-select-option  *ngFor="let datos of parcelamiento" value="datos.installment">{{datos.texto}}</ion-select-option> 
+              </ion-select>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-input #name type="text" placeholder="NOME CARTÃO" class="ion-padding"></ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="ion-padding-horizontal ion-text-center">
+      <ion-button color="tertiary" (click)="HashCard()">
+        Confirme o pagamento
+      </ion-button>
+    </div>
+  </div>
+
+
+  
+
+</ion-content>

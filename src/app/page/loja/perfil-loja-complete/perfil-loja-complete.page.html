@@ -1,0 +1,70 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title color="secondary"> Dados da Loja </ion-title>
+      <ion-buttons slot="end" mode="ios"  >
+        <ion-button color="secondary" mode="ios" (click)="closeModal()" >
+          <ion-icon slot="icon-only" mode="ios" name="close-circle"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="primary">
+  <div>
+    <div *ngIf="!edit">
+    <ion-card  class="ion-no-padding ion-no-margin">
+      <ion-item mode="ios" class="ion-no-padding ion-no-margen"  >
+        <ion-avatar slot="start" > 
+          <img [src]="loja.photo" />
+        </ion-avatar>
+        <ion-label
+          >{{loja.razon}}<br>
+          <small class="ativo">ABERTO</small><br>
+          <ion-button mode="ios" color="secondary">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </ion-button>
+          <ion-button mode="ios" color="secondary">SEGUIR</ion-button>
+        </ion-label>
+      
+      </ion-item>
+    
+      <ion-row>
+        <ion-col size="12"><b>Razão Social:</b> {{loja.razon}}</ion-col>
+        <ion-col size="12"><b>Endereço:</b> {{loja.address}}F </ion-col> 
+        <ion-col size="12"><b>Nome de Contato:</b> Marcia </ion-col> 
+        <ion-col size="12"><b>Telefone:</b> Telefone </ion-col> 
+        <ion-col size="12"><b>Horário de atendimento:</b> 09:00h às 18:00h </ion-col> 
+        <ion-col size="12"><b>Descrição:</b>{{loja.description}} </ion-col>
+      </ion-row>
+      <ion-row *ngIf="user.id === loja.id">
+        <ion-col size="12" class="ion-text-center">
+          <ion-button (click)="edit=true;title='Editar Dados Pets'" color="secondary" >
+            Editar informações
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+  <div *ngIf="edit">
+    <ion-row>
+      <ion-col size="12"><b>Razão Social:</b> PETS MARCIA LTDA. </ion-col>
+      <ion-col size="12"><b>CNPJ:</b> 12.345.678/0001-10 </ion-col> 
+      <ion-col size="12"><b>Endereço:</b> Rua do Pet da Marcia, 50 - Bairro, Cidade/UF </ion-col> 
+      <ion-col size="12"><b>E-mail:</b> pet@marcia.com.br </ion-col>   
+      <ion-col size="12"><b>Nome de Contato:</b> Marcia </ion-col> 
+      <ion-col size="12"><b>Telefone:</b> Telefone </ion-col> 
+      <ion-col size="12"><b>Horário de atendimento:</b> 09:00h às 18:00h </ion-col> 
+      <ion-col size="12"><b>Descrição:</b> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button (click)="edit=true;title='Editar Dados Pets'" color="secondary" >
+          Salvar Alterações
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  </div>
+</ion-content>

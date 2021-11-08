@@ -1,0 +1,13 @@
+{
+  "appId": "com.genios360.nimbus",
+  "appName": "Loopfy",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

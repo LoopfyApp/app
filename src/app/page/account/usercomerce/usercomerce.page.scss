@@ -1,0 +1,27 @@
+ion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.camera-button{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.ioncamera{
+    --background:transparent;
+} 
+ion-input{
+    height: 20px;
+    padding: 0px;
+}
+ion-item{
+    align-items: center;
+    --background:none;
+ ion-input{
+     color:black;
+ }
+ 
+}

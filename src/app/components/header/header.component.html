@@ -1,0 +1,23 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios" [ngClass]="{'transparente': transparente}"    >
+    <ion-buttons slot="start" mode="ios" style="--color:#A6BAC1">
+       
+      <ion-menu-button mode="ios" style="--color:#A6BAC1" ></ion-menu-button>
+      <ion-button color="secondary"  style="--color:#A6BAC1"  *ngIf="atras" (click)="goBack()">
+    
+        <ion-icon slot="icon-only"  name="arrow-undo-circle-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <img src="/assets/icon/loppfy.svg" class="logo_home" />
+    
+    <ion-buttons slot="end" mode="ios" >
+      <ion-button mode="ios" style="--color:#A6BAC1" (click)="notificaciones()">
+        <ion-icon  mode="ios" name="notifications-sharp"></ion-icon>
+      </ion-button>
+      <ion-button mode="ios" style="--color:#A6BAC1;display:none" >
+        <ion-icon mode="ios" name="paper-plane"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

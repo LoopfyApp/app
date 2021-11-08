@@ -1,0 +1,59 @@
+<app-header [atras]="true" [url]='"home/services"'></app-header>
+<ion-content color="primary" [scrollEvents]="true"
+(ionScroll)="onScroll($event)">
+  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <app-loadings *ngIf="!isLoadding"></app-loadings>
+
+  <div *ngIf="isLoadding">
+    <ion-row class="menor">
+      <ion-col size="6">
+        <ion-item mode="ios" class="ion-no-padding ion-no-margen">
+      
+            <img [src]="dataEspecie.logo" slot="start" />
+     
+          <ion-label>{{dataEspecie.name}} </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item mode="ios" class="ion-no-padding ion-no-margen">
+    
+            <img [src]="dataCategory.logo" slot="start"/>
+  
+          <ion-label>{{dataCategory.name}} </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+ 
+        <ion-searchbar  [ngClass]="{'filter-sticky': flagFilterSticky}" placeholder="Pesquisa Serviços"  [(ngModel)]="search"></ion-searchbar>
+ 
+    <ion-card *ngFor="let infoData of dataStore | filter:search">
+      <ion-item mode="ios" class="ion-no-padding ion-no-margen"  (click)="dataSheet(infoData)">
+        <ion-avatar slot="start">
+          <img [src]="infoData.photo" />
+        </ion-avatar>
+        <ion-label
+          >{{infoData.razon}}
+          <br />
+          <small>{{infoData.description}}</small>
+        </ion-label>
+        <ion-buttons slot="end">
+       
+
+          <ion-button mode="ios" >
+            <ion-icon
+              slot="icon-only"
+              name="arrow-redo-circle-outline"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-card>
+
+    <h4 *ngIf="dataStore.length == 0 "  class="ion-text-center option-center">Sem resultados</h4>
+  </div>
+</ion-content>

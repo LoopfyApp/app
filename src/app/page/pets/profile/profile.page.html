@@ -1,0 +1,74 @@
+<app-header></app-header>
+<ion-content
+  color="primary"
+  [scrollEvents]="true"
+  (ionScroll)="onScroll($event)"
+>
+  <app-loadings *ngIf="!isLoadding"></app-loadings>
+  <div *ngIf="isLoadding">
+    <ion-card class="ion-no-padding ion-no-margin">
+      <div class="overlay"></div>
+      <div class="divcover">
+        <ion-row class="profile">
+          <ion-col size="4" class="center">
+            <img [src]="Infopets.photo" class="avatar" />
+          </ion-col>
+          <ion-col size="8">
+            <ion-label color="tertiary">{{Infopets.name}}</ion-label>
+            <ion-button
+              fill="clear"
+              class="button_transparente"
+              mode="ios"
+              (click)="dataProfile(Infopets.id)"
+            >
+              + INFORMAÇÃO
+            </ion-button>
+          </ion-col>
+        </ion-row>
+ 
+        <ion-row class="row-bottom" *ngIf="idUser != Infopets.users_id">
+          <ion-col size="6">
+            <ion-button (click)="follower()" class="button_rojo" mode="ios" *ngIf="followerInfo == null "> Seguir </ion-button>
+            <ion-button (click)="unfollower(followerInfo.id)" class="button_rojo" mode="ios"  *ngIf="followerInfo != null"> Deixar de seguir </ion-button>
+
+
+           
+          </ion-col>
+          <ion-col size="6">
+            <ion-button class="button_verdeagua" mode="ios" style="display:none">
+              Enviar mensagem
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-card>
+
+    <ion-toolbar mode="ios" [ngClass]="{'filter-sticky': flagFilterSticky}">
+      <ion-segment
+        mode="ios"
+        (ionChange)="redesValue($event)"
+        [(ngModel)]="redeOption"
+      >
+        <ion-segment-button value="2" mode="ios">
+          Suas Publicações
+        </ion-segment-button>
+        <ion-segment-button value="1" mode="ios">
+          Favoritos
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+    <app-posts-rede [posts]="posts" *ngIf="redeOption==2"></app-posts-rede>
+  </div>
+  <ion-fab
+    horizontal="end"
+    vertical="bottom"
+    slot="fixed"
+    *ngIf="redeOption==2"
+    (click)="postNew()"
+  >
+    <ion-fab-button fill="outline">
+      <ion-icon class="full" src="/assets/icon/plus.svg"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

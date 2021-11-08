@@ -1,0 +1,7 @@
+{
+  "name": "loopfy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

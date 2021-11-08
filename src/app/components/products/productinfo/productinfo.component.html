@@ -1,0 +1,158 @@
+<div *ngIf="loading">
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" mode="ios" style="--color:#A6BAC1">
+   
+      <ion-button color="secondary"  style="--color:#A6BAC1" (click)="close()" >
+    
+        <ion-icon slot="icon-only"  name="arrow-undo-circle-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+  <ion-title>
+    <div class="ion-padding ion-text-wrap">{{info.name.substr(0,50)}}...
+    </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-card>
+  <ion-item lines="none"> 
+    <ion-avatar slot="start">
+      <img src="{{info.store.photo}}">
+    </ion-avatar>
+    <ion-label> 
+      <p>{{info.store.razon}}</p> 
+      <small>{{info.store.description}}</small>
+    </ion-label>
+  </ion-item>
+  <ion-slides class="SlideProducts"
+  pager="true"
+  [options]="sliderOptions"
+  >
+    <ion-slide style="background-image: url({{info.photo}});"></ion-slide>
+
+    <ion-slide *ngFor="let fotos of info.details.photo" style="background-image: url({{fotos}});"></ion-slide>
+
+    
+  </ion-slides>
+  <ion-card-content>
+    <ion-row>
+
+      <ion-col size="12" >
+        <p class="title">{{info.name}}</p>
+    
+        <ion-chip>
+          <ion-label color="secondary">{{info!.details['subcategory_name']}}</ion-label>
+        </ion-chip>   
+        <ion-chip>
+          <ion-label color="secondary">Marca <b>{{info!.nameMarca}}</b></ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-label color="secondary">{{info!.nameCategoria}}</ion-label>
+        </ion-chip>
+        
+        <p *ngIf="info.offerts > 0" class="precio2">de <s>{{info.amount_offerts | currency}}</s> por</p>
+        <h6 class="precio">{{info.price | currency  }}</h6>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">  <p class="title">INFORMAÇÕES DO PRODUTO</p></ion-col>
+      <ion-col size="12">
+       
+        <ion-chip>
+          <ion-label color="tertiary"> Descrição</ion-label>
+        </ion-chip>
+        <div [innerHTML]="info!.description"></div>
+      </ion-col>
+      <ion-col size="12">
+        <ion-chip>
+          <ion-label color="secondary"> Composição</ion-label>
+        </ion-chip>
+        
+        <div [innerHTML]="info!.ficha"></div>
+      </ion-col>
+      <ion-col size="12">
+        
+        <ion-chip>
+          <ion-label color="primary"> Apresentação</ion-label>
+        </ion-chip>
+        <div [innerHTML]="info!.details['presentacion']"></div>
+      </ion-col>
+      
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+<br><br>
+</ion-content>
+<ion-footer  mode="ios" *ngIf="typeUser==1">
+  <ion-toolbar mode="ios">
+    <ion-button class="button_rojo" mode="ios" fill="clear" (click)="buyProduct(info)" >Comprar</ion-button>
+  </ion-toolbar>
+</ion-footer>
+</div>
+<div *ngIf="!loading">
+  <div class="ion-padding custom-skeleton">
+    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+  </div>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</div>

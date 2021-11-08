@@ -1,0 +1,134 @@
+
+ion-content{
+	--background: #DEEBEB;
+}
+
+.top-div{
+	display: flex;
+	height: 160px;/*180px*//*24%*/
+	width: 100%;/*350px*/
+	background-color: #DEEBEB;/*#DEEBEB*//*red*/
+  border-bottom: 1px solid #C1CDCD;
+}
+
+ion-item{
+	--background: transparent;
+}
+
+.foto{
+	display: flex;
+  align-items: center;
+  justify-content: center;
+	//background-color: green;
+	height: 100%;
+	width: 30%;/*35%*/
+}
+
+.textos{
+  display: inline-block;
+  //justify-content: center;
+  //align-items: center;
+  vertical-align: middle;
+	//background-color: orange;
+	height: 100%;/*100*/
+	width: 70%;
+  //padding: -10px;
+  z-index: 7;
+  color: #A5B9C1;
+  font-size: 3.889vw;/*> 13*//*14px*/
+}
+
+/*
+.textos:before{
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 50%;
+}
+*/
+
+.img-box{
+  background-image: url(/assets/icon/botonbasefoto.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 3px;
+}
+
+.profilepic {
+  width: 60px;/*60px*/
+  max-width: none;
+  height: 60px;
+  max-height: none;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 2px;/*vem pra baixo diminui*/
+  //margin-top: 5px;
+  //margin-left: -1px; /*vem pra esquerda diminui*/
+}
+
+.flexfollow{
+  position: relative;
+  top: 33%;/*30*/
+	display: flex;
+  //padding: 3px;
+}
+
+.fwd{
+  //background-color: blue;
+  display: inline-block;
+  text-align: center;
+}
+.segue{
+  //background-color: blue;
+  display: inline-block;
+  margin-left: 12px;/*2px*/
+  text-align: center;
+}
+
+
+.lugar{
+  position: relative;
+  top: 30%;/*26%*/
+  //background-color: purple;
+}
+
+.nome{
+  position: relative;
+  top: 26%;
+  //background-color: purple;
+  text-transform: uppercase;
+}
+
+hr{
+  border-top: 1px solid red;
+}
+
+.gray{
+  color: #A5B9C1;
+}
+
+ion-item{
+  --color: #A5B9C1;
+}
+
+.postioncart{
+  top: 15%;
+}
+ 
+.botao-meio{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#imgbutton{
+  height : 100%;
+}
+
+#label-entrar{
+  position: absolute;
+  color: #ffffff;
+  bottom: 25%;
+}

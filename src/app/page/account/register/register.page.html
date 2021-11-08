@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login" mode="ios" text="" color="secondary"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="secondary" class="ion-text-wrap">Fazer o cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="primary">
+
+
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-padding" size="6" *ngFor="let botao of botoes">
+    <div class="sabep" >
+      <ion-fab-button  class="fab" [style.--color] = "botao.ativo ? '#00C7D1' : '#899396'" (click)="fabclick(botao)" fill="outline">
+        <ion-icon class="full" [src]="botao.icon"></ion-icon>
+      </ion-fab-button>
+      <label class="ze" [style.color] = "botao.ativo ? '#00C7D1' : '#899396'">{{ botao.title }}</label>
+    </div>
+  </ion-col>
+  </ion-row>
+  <div class="center  ion-padding">
+    <ion-button class="button_blanco" mode="ios" (click)="registerUser()" [disabled]="seleccion == 0">Continuar</ion-button>
+ 
+  </div> 
+</ion-content>

@@ -1,0 +1,95 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title class="ion-text-wrap" color="secondary">
+      Publique seu momento
+    </ion-title>
+    <ion-buttons slot="end" mode="ios">
+      <ion-button (click)="close()">
+        <ion-icon src="/assets/button/exitbutton.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card >
+    <ion-item mode="ios" class="ion-no-padding ion-no-margen" (click)="selectmascote()" *ngIf="!selectMascte">
+      <ion-label  class="ion-padding"> 
+        Selecione Mascote
+      </ion-label>
+ 
+          <ion-icon  color="secondary"   slot="end"name="add-circle" ></ion-icon>
+    
+    </ion-item>
+
+    <ion-item mode="ios" class="ion-no-padding ion-no-margen" *ngIf="selectMascte"  (click)="selectmascote()">
+      <ion-avatar slot="start" > 
+        <img [src]="datamascote.photo" />
+      </ion-avatar>
+      <ion-label
+        >{{datamascote.name}}
+        <br />
+        <small>{{datamascote.description}}</small>
+      </ion-label> 
+     
+    
+          <ion-icon
+          mode="ios" color="secondary" slot="end"
+            name="close-circle-outline"
+          ></ion-icon> 
+    </ion-item>
+
+  </ion-card>
+  <h4  class="ion-text-center" color="secondary">Envie sua foto favorita</h4>
+  <div tappable class="img-box ion-text-center" (click)="presentActionSheet()">
+    <ion-img class="profilepic" *ngIf="imageChangedEvent == '' "  [src]="photo"></ion-img>
+  </div>
+  <div *ngIf="imageChangedEvent != ''"> 
+    <image-cropper
+    [imageBase64]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="16/9"
+    [roundCropper]="false"
+    [resizeToWidth]="200" 
+    [resizeToHeight]="200"
+    (imageCropped)="imageCropped($event)"
+ 
+></image-cropper>
+<ion-row>
+  <ion-col size="6">
+    <ion-button fill="clear" class="button_verdeagua" (click)="terminarfoto()"  >
+      Terminar
+    </ion-button>
+  </ion-col>
+  <ion-col size="6" >
+    <ion-button fill="clear" class="button_blanco"  (click)="cancelarfoto()">
+      Cancelar
+    </ion-button>
+  </ion-col>
+</ion-row>
+</div>
+
+<ion-item>
+  <ion-label>{{newmessage}}</ion-label>
+</ion-item>
+
+
+</ion-content>
+<ion-footer color="tertiary">
+  <ion-row class="input-position ion-no-padding fondo"  color="tertiary">
+    <ion-col size="2">
+      <ion-icon mode="ios" (click)="keyboards()" *ngIf="!showEmojiPicker"  name="happy" ></ion-icon>
+      <ion-icon name="text-outline"  (click)="emojis()"  *ngIf="showEmojiPicker"></ion-icon>
+    </ion-col>
+    <ion-col size="8">
+      <ion-textarea type="text" mode="ios" autoGrow="true" placeholder="Seu comentário" [(ngModel)]="newmessage"></ion-textarea>
+    </ion-col>
+    <ion-col size="2" text-right>
+        <ion-icon mode="ios" (click)="addmessage()"   name="send"  ></ion-icon>
+   </ion-col>
+  </ion-row>
+
+  <div class="emojiContainer" [style.height]="showEmojiPicker?'300px':'0px'">  
+    <emoji-picker (onEmojiSelect)="addEmoji($event)"></emoji-picker>
+  </div>
+</ion-footer>
